@@ -8,30 +8,20 @@ Repo sử dụng trong hướng dẫn này:
 https://github.com/HoangThienDe20/KTHDVVDTDM
 ```
 
-## 1. Chuẩn bị tài khoản
+## 1. Điều kiện trước khi chạy
 
-1. Tạo tài khoản GitHub nếu chưa có: https://github.com
-2. Tạo hoặc đăng nhập Databricks Workspace.
-3. Đảm bảo bạn có quyền tạo cluster trong Databricks.
+1. Bạn đã đăng nhập Databricks Workspace.
+2. Bạn đã có repo GitHub: https://github.com/HoangThienDe20/KTHDVVDTDM
+3. Bạn có quyền tạo cluster trong Databricks.
 
 ## 2. Chuẩn bị source code (2 cách)
 
-### Cách A: Khuyến nghị - dùng GitHub Repo
+### Cách A: Khuyến nghị - dùng GitHub Repo đã có sẵn
 
-1. Tạo repo mới trên GitHub (nếu chưa có). Trường hợp của bạn đã có sẵn repo:
+Repo sử dụng:
 
 ```text
 https://github.com/HoangThienDe20/KTHDVVDTDM
-```
-2. Trên máy local, mở thư mục project và chạy:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/HoangThienDe20/KTHDVVDTDM.git
-git push -u origin main
 ```
 
 ### Cách B: Upload trực tiếp lên Databricks Workspace Files
