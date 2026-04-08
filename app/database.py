@@ -12,9 +12,17 @@ def _build_default_sqlite_url() -> str:
     Locally, keep using metrics.db in project root.
     """
     if os.getenv("DATABRICKS_RUNTIME_VERSION"):
-        dbfs_dir = "/dbfs/FileStore/ptdl-metrics"
-        os.makedirs(dbfs_dir, exist_ok=True)
-        return f"sqlite:///{dbfs_dir}/metrics.db"
+        candidates = [
+            "/dbfs/FileStore/ptdl-metrics",
+            "/local_disk0/tmp/ptdl-metrics",
+            "/tmp/ptdl-metrics",
+        ]
+        for db_dir in candidates:
+            try:
+                os.makedirs(db_dir, exist_ok=True)
+                return f"sqlite:///{db_dir}/metrics.db"
+            except OSError:
+                continue
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
     return f"sqlite:///{os.path.join(base_dir, '..', 'metrics.db')}"
