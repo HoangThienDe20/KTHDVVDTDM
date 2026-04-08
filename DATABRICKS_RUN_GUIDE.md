@@ -5,7 +5,7 @@ Tài liệu này hướng dẫn đầy đủ theo thứ tự thực tế: tạo 
 Repo sử dụng trong hướng dẫn này:
 
 ```text
-https://github.com/HoangThienDe20/DTDM
+https://github.com/HoangThienDe20/KTHDVVDTDM
 ```
 
 ## 1. Chuẩn bị tài khoản
@@ -21,7 +21,7 @@ https://github.com/HoangThienDe20/DTDM
 1. Tạo repo mới trên GitHub (nếu chưa có). Trường hợp của bạn đã có sẵn repo:
 
 ```text
-https://github.com/HoangThienDe20/DTDM
+https://github.com/HoangThienDe20/KTHDVVDTDM
 ```
 2. Trên máy local, mở thư mục project và chạy:
 
@@ -30,7 +30,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
-git remote add origin https://github.com/HoangThienDe20/DTDM.git
+git remote add origin https://github.com/HoangThienDe20/KTHDVVDTDM.git
 git push -u origin main
 ```
 
@@ -44,19 +44,24 @@ Lưu ý: Cách A dễ quản lý phiên bản hơn và tiện cập nhật về 
 
 ## 3. Import code vào Databricks Repos (nếu dùng Cách A)
 
-1. Vào mục Repos trong Databricks.
-2. Chọn Add Repo.
+1. Vào mục Workspace trong Databricks.
+2. Chọn Create -> Git folder (hoặc Connect to a GitHub repo).
 3. Dán URL repo GitHub:
 
 ```text
-https://github.com/HoangThienDe20/DTDM
+https://github.com/HoangThienDe20/KTHDVVDTDM
 ```
-4. Chọn branch main.
-5. Sau khi import xong, bạn sẽ có đường dẫn dạng:
+4. Databricks Free Edition thường không hiện ô chọn branch khi tạo Git folder.
+5. Repo sẽ clone theo default branch trên GitHub (hãy đảm bảo default branch là main).
+6. Sau khi import xong, bạn sẽ có đường dẫn dạng:
 
 ```text
-/Workspace/Repos/<databricks-user>/DTDM
+/Workspace/Users/<databricks-user>/KTHDVVDTDM
 ```
+
+Mẹo kiểm tra nhanh:
+1. Ở danh sách file, cạnh tên repo cần thấy nhãn branch là main.
+2. Nếu không phải main, vào menu Git của repo để Switch branch sang main.
 
 ## 4. Tạo cluster để chạy
 
@@ -76,7 +81,7 @@ https://github.com/HoangThienDe20/DTDM
 ### Cell 1 (Python)
 
 ```python
-%pip install -r /Workspace/Repos/<databricks-user>/DTDM/requirements.txt
+%pip install -r /Workspace/Users/<databricks-user>/KTHDVVDTDM/requirements.txt
 ```
 
 Nếu Databricks yêu cầu restart Python, hãy restart rồi chạy tiếp các cell sau.
@@ -87,7 +92,7 @@ Nếu Databricks yêu cầu restart Python, hãy restart rồi chạy tiếp cá
 
 ```bash
 %sh
-cd /Workspace/Repos/<databricks-user>/DTDM/frontend
+cd /Workspace/Users/<databricks-user>/KTHDVVDTDM/frontend
 npm install
 npm run build
 ```
@@ -100,7 +105,7 @@ Kết quả build nằm trong thư mục `frontend/dist`.
 
 ```bash
 %sh
-cd /Workspace/Repos/<databricks-user>/DTDM
+cd /Workspace/Users/<databricks-user>/KTHDVVDTDM
 export HOST=0.0.0.0
 export PORT=8000
 export UVICORN_RELOAD=false
@@ -117,7 +122,7 @@ Ghi chú:
 
 ```bash
 %sh
-cd /Workspace/Repos/<databricks-user>/DTDM
+cd /Workspace/Users/<databricks-user>/KTHDVVDTDM
 python -c "import requests; [requests.post('http://127.0.0.1:8000/api/system/collect', timeout=5) for _ in range(30)]; print('seeded')"
 ```
 
@@ -125,7 +130,7 @@ python -c "import requests; [requests.post('http://127.0.0.1:8000/api/system/col
 
 ```bash
 %sh
-cd /Workspace/Repos/<databricks-user>/DTDM
+cd /Workspace/Users/<databricks-user>/KTHDVVDTDM
 export METRICS_API_BASE_URL=http://127.0.0.1:8000
 python collect_system_metrics.py --interval 2
 ```
@@ -136,7 +141,7 @@ python collect_system_metrics.py --interval 2
 
 ```bash
 %sh
-cd /Workspace/Repos/<databricks-user>/DTDM/frontend
+cd /Workspace/Users/<databricks-user>/KTHDVVDTDM/frontend
 export VITE_SERVER_IP=127.0.0.1
 export VITE_SERVER_PORT=8000
 npm run dev -- --host 0.0.0.0 --port 3000
