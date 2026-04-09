@@ -2,6 +2,10 @@
 
 Tài liệu này hướng dẫn đầy đủ theo thứ tự thực tế: tạo tài khoản, tạo repo, upload code, build và chạy backend + frontend trên Databricks.
 
+Nếu bạn dùng Databricks Free Edition và chỉ có SQL Warehouse (không có Create compute), hãy dùng tài liệu:
+
+`DATABRICKS_FREE_EDITION_RUN_GUIDE.md`
+
 Repo sử dụng trong hướng dẫn này:
 
 ```text
@@ -13,6 +17,10 @@ https://github.com/HoangThienDe20/KTHDVVDTDM
 1. Bạn đã đăng nhập Databricks Workspace.
 2. Bạn đã có repo GitHub: https://github.com/HoangThienDe20/KTHDVVDTDM
 3. Bạn có quyền tạo cluster trong Databricks.
+
+Lưu ý quan trọng:
+- Hướng dẫn fullstack trong tài liệu này (chạy FastAPI + Vite trên notebook) bắt buộc cần Notebook Compute/Cluster.
+- Nếu tài khoản chỉ thấy SQL Warehouses và không có nút Create compute, bạn không thể chạy được các bước backend/frontend ở bên dưới theo đúng kiểu này.
 
 ## 2. Chuẩn bị source code (2 cách)
 
@@ -56,9 +64,18 @@ Mẹo kiểm tra nhanh:
 ## 4. Tạo cluster để chạy
 
 1. Vào Compute.
-2. Chọn Create compute.
-3. Chọn Runtime khuyến nghị: DBR 14+.
-4. Chờ trạng thái cluster là Running.
+2. Kiểm tra nhanh:
+	- Nếu có nút Create compute: đi tiếp bước 3.
+	- Nếu không có nút Create compute và chỉ có tab SQL warehouses: workspace hiện tại không đủ điều kiện chạy hướng dẫn fullstack này.
+3. Chọn Create compute.
+4. Chọn Runtime khuyến nghị: DBR 14+.
+5. Chờ trạng thái cluster là Running.
+
+Nếu bạn đang ở Free Edition (chỉ có SQL Warehouse):
+1. Bạn dừng tại đây và không chạy tiếp các bước 5-17 theo nhánh này.
+2. Cách đúng để hoàn thành bài tập:
+	- Xin workspace Databricks của lớp/nhóm có quyền tạo compute.
+	- Hoặc đổi đề bài sang hướng SQL Warehouse/Databricks SQL (không chạy uvicorn, không chạy npm dev server).
 
 ## 5. Tạo notebook chạy dự án
 

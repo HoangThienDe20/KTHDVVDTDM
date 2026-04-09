@@ -132,6 +132,20 @@ python generate_iot_data.py --continuous --interval 2
 
 ---
 
+## Databricks Free Edition (SQL Warehouse)
+
+Nếu tài khoản Databricks của bạn không có `Create compute` và chỉ có SQL Warehouse,
+hãy chạy theo hướng dẫn tại:
+
+- `DATABRICKS_FREE_EDITION_RUN_GUIDE.md`
+
+Các script SQL đã có sẵn trong repo:
+
+- `databricks_sql/01_setup_metrics_demo.sql`
+- `databricks_sql/02_dashboard_queries.sql`
+
+---
+
 ## 🚀 Hướng Dẫn Chạy Hệ Thống
 
 ### **Bộ Dữ Liệu Là Gì?**
